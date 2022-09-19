@@ -7,8 +7,8 @@ include("../include/header.php");
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-                    <li class="breadcrumb-item"><a href="#">role</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">View-role</li>
+                    <li class="breadcrumb-item"><a href="#">category</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">View-category</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -18,7 +18,7 @@ include("../include/header.php");
 
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"></span></span>View role</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"></span></span>View category</h4>
                 </div>
                 <!-- /Title -->
 
@@ -41,16 +41,16 @@ include("../include/header.php");
                                                     <th>Updated At</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="roleexport">
+                                            <tbody id="categoryexport">
                                             <?php
                                             while($row = mysqli_fetch_array($data)){
                                             ?>
 
                                             
                                                 <tr>
-                                                    <td><?php echo $row['role_id']; ?></td>
+                                                    <td><?php echo $row['category_id']; ?></td>
                                                     <td>Action</td>
-                                                    <td><?php echo $row['role_name']; ?></td>
+                                                    <td><?php echo $row['category_name']; ?></td>
                                                     <td><?php echo $row['status']; ?></td>
                                                     <td><?php echo $row['created_at']; ?></td>
                                                     <td><?php echo $row['updated_at']; ?></td>
@@ -74,7 +74,7 @@ include("../include/header.php");
                                                 <tr>
                                                 <th>ID</th>
                                                     <th>Action</th>
-                                                    <th>Role Name</th>
+                                                    <th>Category Name</th>
                                                     <th>Status</th>
                                                     <th>Created At</th>
                                                     <th>Updated At</th>
@@ -83,17 +83,17 @@ include("../include/header.php");
                                             <tbody>
                                             
                                             <?php
-                                            $data = mysqli_query($conn,"SELECT * FROM `role` WHERE `delete`=0");
+                                            $data = mysqli_query($conn,"SELECT * FROM `category` WHERE `delete`=0");
 
                                             while($row = mysqli_fetch_array($data)){
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $row['role_id'] ?></td>
+                                                    <td><?php echo $row['category_id'] ?></td>
                                                     <td>
-                                                        <a class="btn btn-primary" href="../add-role?edit=<?php echo $row['role_id']; ?>">Edit</a>
-                                                        <button class="btn btn-danger" onclick="deleterole(<?php echo $row['role_id']; ?>)">Delete</button>
+                                                        <a class="btn btn-primary" href="../add-category?edit=<?php echo $row['category_id']; ?>">Edit</a>
+                                                        <button class="btn btn-danger" onclick="deletecategory(<?php echo $row['category_id']; ?>)">Delete</button>
                                                     </td>
-                                                    <td><?php echo $row['role_name'] ?></td>
+                                                    <td><?php echo $row['category_name'] ?></td>
                                                     <td><?php echo $row['status'] ?></td>
                                                     <td><?php echo $row['created_at'] ?></td>
                                                     <td><?php echo $row['updated_at'] ?></td>
@@ -107,7 +107,7 @@ include("../include/header.php");
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Action</th>
-                                                    <th>Role Name</th>
+                                                    <th>category Name</th>
                                                     <th>Status</th>
                                                     <th>Created At</th>
                                                     <th>Updated At</th>
@@ -135,10 +135,10 @@ include("../include/footer.php");
 ?>
 <script>
 
-    function deleterole(id){
+    function deletecategory(id){
         
         $.ajax({
-        url: "../ajax/delete/deleterole.php",
+        url: "../ajax/delete/deletecategory.php",
         dataType: "text",
         type: "POST",
         async: true,
@@ -161,7 +161,7 @@ if($_SESSION['delete']=="1"){
 
     <script>
         $(document).ready(function(){
-                toastr.error("role deleted successfully")
+                toastr.error("Category deleted successfully")
             })
     </script>
     <?php

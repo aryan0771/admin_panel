@@ -236,31 +236,7 @@ License: You must have a valid license purchased only from themeforest to legall
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-with-badge" href="../javascript:void(0);" data-toggle="collapse" data-target="#app_drp">
-                                <span class="feather-icon"><i data-feather="package"></i></span>
-                                <span class="nav-link-text">Application</span>
-                                <span class="badge badge-primary badge-pill">4</span>
-                            </a>
-                            <ul id="app_drp" class="nav flex-column collapse collapse-level-1">
-                                <li class="nav-item">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../chats.html">Chat</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../calendar.html">Calendar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../email.html">Email</a>
-                                        </li>
-										<li class="nav-item">
-                                            <a class="nav-link" href="../file-manager.html">File Manager</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#auth_drp">
                                 <span class="feather-icon"><i data-feather="zap"></i></span>
@@ -303,49 +279,6 @@ License: You must have a valid license purchased only from themeforest to legall
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#signin_drp">
-													Login
-												</a>
-                                            <ul id="signin_drp" class="nav flex-column collapse collapse-level-2">
-                                                <li class="nav-item">
-                                                    <ul class="nav flex-column">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="../login.html">Cover</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="../login-simple.html">Simple</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#recover_drp">
-													Recover Password
-												</a>
-                                            <ul id="recover_drp" class="nav flex-column collapse collapse-level-2">
-                                                <li class="nav-item">
-                                                    <ul class="nav flex-column">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="../forgot-password.html">Forgot Password</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="../reset-password.html">Reset Password</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../lock-screen.html">Lock Screen</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../404.html">Error 404</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../maintenance.html">Maintenance</a>
-                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -353,26 +286,29 @@ License: You must have a valid license purchased only from themeforest to legall
                         <li class="nav-item">
                             <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#pages_drp">
                                 <span class="feather-icon"><i data-feather="file-text"></i></span>
-                                <span class="nav-link-text">Pages</span>
+                                <span class="nav-link-text">Master</span>
                             </a>
                             <ul id="pages_drp" class="nav flex-column collapse collapse-level-1">
                                 <li class="nav-item">
                                     <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../profile.html">Profile</a>
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#signup_drp">
+													Category
+												</a>
+                                            <ul id="signup_drp" class="nav flex-column collapse collapse-level-2">
+                                                <li class="nav-item">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../add-category/">Add</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../view-category/">View</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../invoice.html">Invoice</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../gallery.html">Gallery</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../activity.html">Activity</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../faq.html">Faq</a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
                             </ul>

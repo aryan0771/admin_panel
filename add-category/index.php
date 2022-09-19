@@ -3,30 +3,30 @@ include("../include/header.php");
 ?>
 <?php
 if(isset($_GET['edit'])){
-    $data = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM role WHERE role_id='".$_GET['edit']."'"));
-    $role_name = $data['role_name'];
+    $data = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM category WHERE category_id='".$_GET['edit']."'"));
+    $category_name = $data['category_name'];
     $status = $data['status'];
 }
 
-if(isset($_POST['create-role']))
+if(isset($_POST['create-category']))
 {
-    $role_name = $_POST['role_name'];
+    $category_name = $_POST['category_name'];
     $status = $_POST['status'];
     if(isset($_GET['edit']))
     {
         //All part for edit
-        $checkrepeat = mysqli_fetch_assoc(mysqli_query($conn,"SELECT role_id FROM role WHERE role_name='".$role_name."' AND role_id!=".$_GET['edit'].""));
+        $checkrepeat = mysqli_fetch_assoc(mysqli_query($conn,"SELECT category_id FROM category WHERE category_name='".$category_name."' AND category_id!=".$_GET['edit'].""));
         
         if(count($checkrepeat)==0){
                 
                 //Edit query
-                $update = mysqli_query($conn,"UPDATE role SET role_name='".$role_name."',status='".$status."' WHERE `role_id`=".$_GET['edit']."");
+                $update = mysqli_query($conn,"UPDATE category SET category_name='".$category_name."',status='".$status."' WHERE `category_id`=".$_GET['edit']."");
             
             
             ?>
             <script>
                 $(document).ready(function(){
-                    toastr.success("Role updated successfully");
+                    toastr.success("Category updated successfully");
                 })
             </script>
             <?php
@@ -35,7 +35,7 @@ if(isset($_POST['create-role']))
             ?>
             <script>
                 $(document).ready(function(){
-                    toastr.error("Role already exists");
+                    toastr.error("Category already exists");
                 })
             </script>
             <?php
@@ -45,19 +45,19 @@ if(isset($_POST['create-role']))
     else
     {
         //All part works for add
-        $checkrepeat = mysqli_fetch_assoc(mysqli_query($conn,"SELECT role_id FROM role WHERE role_name='".$role_name."'"));
+        $checkrepeat = mysqli_fetch_assoc(mysqli_query($conn,"SELECT category_id FROM category WHERE category_name='".$category_name."'"));
         
             if(count($checkrepeat)==0){
 
                 //add query
-                $addrole = mysqli_query($conn,"INSERT INTO role SET role_name='".$role_name."',status='".$status."'");
+                $addcategory = mysqli_query($conn,"INSERT INTO category SET category_name='".$category_name."',status='".$status."'");
                 
-                $role_name = "";
+                $category_name = "";
                 $status = "";
                 ?>
                 <script>
                     $(document).ready(function(){
-                        toastr.success("Role created successfully")
+                        toastr.success("category created successfully")
                     })
                 </script>
                 <?php
@@ -66,7 +66,7 @@ if(isset($_POST['create-role']))
                 ?>
                 <script>
                     $(document).ready(function(){
-                        toastr.error("Role already exists")
+                        toastr.error("category already exists")
                     })
                 </script>
                 <?php
@@ -83,8 +83,8 @@ if(isset($_POST['create-role']))
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-                    <li class="breadcrumb-item"><a href="#">Role</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> role</li>
+                    <li class="breadcrumb-item"><a href="#">Category</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> Category</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -93,7 +93,7 @@ if(isset($_POST['create-role']))
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"></span></span><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> Role</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"></span></span><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> category</h4>
                 </div>
                 <!-- /Title -->
 
@@ -105,8 +105,8 @@ if(isset($_POST['create-role']))
                                 <div class="col-sm">
                                     <form action="" method="post">
                                         <div class="form-group">
-                                            <label for="role name">Role Name</label>
-                                            <input class="form-control" name="role_name" placeholder="Enter role name" type="text" value="<?php if(isset($role_name)){echo $role_name;} ?>">
+                                            <label for="category name">Category Name</label>
+                                            <input class="form-control" name="category_name" placeholder="Enter category name" type="text" value="<?php if(isset($category_name)){echo $category_name;} ?>">
                                         </div>
                                             <div class="col-md-4 mb-10">
                                                 <label for="state">Status</label>
@@ -118,7 +118,7 @@ if(isset($_POST['create-role']))
                                         
                                         <hr>
                                         
-                                        <button class="btn btn-primary" name="create-role" type="submit"><?php if(isset($_GET['edit'])){echo "Save changes";}else{echo "Create";} ?></button>
+                                        <button class="btn btn-primary" name="create-category" type="submit"><?php if(isset($_GET['edit'])){echo "Save changes";}else{echo "Create";} ?></button>
                                     </form>
                                 </div>
                             </div>
