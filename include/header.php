@@ -181,10 +181,7 @@ License: You must have a valid license purchased only from themeforest to legall
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                        <a class="dropdown-item" href="../profile.html"><i class="dropdown-icon zmdi zmdi-account"></i><span>Profile</span></a>
-                        <a class="dropdown-item" href="../#"><i class="dropdown-icon zmdi zmdi-card"></i><span>My balance</span></a>
-                        <a class="dropdown-item" href="../inbox.html"><i class="dropdown-icon zmdi zmdi-email"></i><span>Inbox</span></a>
-                        <a class="dropdown-item" href="../#"><i class="dropdown-icon zmdi zmdi-settings"></i><span>Settings</span></a>
+                        <a class="dropdown-item" href="../profile"><i class="dropdown-icon zmdi zmdi-account"></i><span>Profile</span></a>
                         <div class="dropdown-divider"></div>
                         <div class="sub-dropdown-menu show-on-hover">
                             <a href="../#" class="dropdown-toggle dropdown-item no-caret"><i class="zmdi zmdi-check text-success"></i>Online</a>
@@ -216,7 +213,7 @@ License: You must have a valid license purchased only from themeforest to legall
                 <div class="navbar-nav-wrap">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item active">
-                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#dash_drp">
+                            <a class="nav-link" href="../dashboard/">
                                 <span class="feather-icon"><i data-feather="activity"></i></span>
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
@@ -307,7 +304,41 @@ License: You must have a valid license purchased only from themeforest to legall
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li>
+                                    </li>
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#country_drp">
+													Country
+												</a>
+                                            <ul id="country_drp" class="nav flex-column collapse collapse-level-2">
+                                                <li class="nav-item">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../add-country/">Add</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../view-country/">View</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#state_drp">
+													State
+												</a>
+                                            <ul id="state_drp" class="nav flex-column collapse collapse-level-2">
+                                                <li class="nav-item">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../add-state/">Add</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../view-state/">View</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                    </li>
                                         
                                     </ul>
                                 </li>

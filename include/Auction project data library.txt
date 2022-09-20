@@ -1,0 +1,79 @@
+Auction project
+
+1. user table
+user_id
+full_name
+email
+phone
+country
+state
+city
+date_of_birth
+password
+created_at
+updated_at
+delete
+
+2. country
+country_id
+country_name
+country_status
+created_at
+updated_at
+delete
+
+3. state
+state_id
+country_id
+state_name
+state_status
+created_at
+updated_at
+delete
+
+4. city
+city_id
+state_id
+city_name
+city_status
+created_at
+updated_at
+delete
+
+5. admin
+admin_id
+role_id
+full_name
+email
+phone
+otp
+password
+status
+created_at
+updated_at
+delete
+
+6. role
+role_id
+role_name
+role_status
+created_at
+updated_at
+delete
+
+7. category
+category_id
+category_name
+category_status
+created_at
+updated_at
+delete
+
+8. sub category
+sub_category_id
+category_id
+sub_category_name
+sub_category_status
+created_at
+updated_at
+delete
