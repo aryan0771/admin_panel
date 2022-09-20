@@ -47,7 +47,11 @@ License: You must have a valid license purchased only from themeforest to legall
     <!-- Data Table CSS -->
     <link href="../vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="../vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
-	
+    <style>
+    .error{
+        color:red
+    }
+</style>
 </head>
 
 <body>
@@ -339,6 +343,23 @@ License: You must have a valid license purchased only from themeforest to legall
                                                 </li>
                                             </ul>
                                     </li>
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#city_drp">
+													City
+												</a>
+                                            <ul id="city_drp" class="nav flex-column collapse collapse-level-2">
+                                                <li class="nav-item">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../add-city/">Add</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="../view-city/">View</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                    </li>
                                         
                                     </ul>
                                 </li>
@@ -352,9 +373,9 @@ License: You must have a valid license purchased only from themeforest to legall
                     </div>
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="../javascript:void(0);" data-toggle="collapse" data-target="#Components_drp">
+                            <a class="nav-link" href="../view-user/" >
                                 <span class="feather-icon"><i data-feather="layout"></i></span>
-                                <span class="nav-link-text">Components</span>
+                                <span class="nav-link-text">Users</span>
                             </a>
                             <ul id="Components_drp" class="nav flex-column collapse collapse-level-1">
                                 <li class="nav-item">

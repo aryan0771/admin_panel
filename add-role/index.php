@@ -103,7 +103,7 @@ if(isset($_POST['create-role']))
                         <section class="hk-sec-wrapper">
                             <div class="row">
                                 <div class="col-sm">
-                                    <form action="" method="post">
+                                    <form action="" method="post" id="add-role-validation">
                                         <div class="form-group">
                                             <label for="role name">Role Name</label>
                                             <input class="form-control" name="role_name" placeholder="Enter role name" type="text" value="<?php if(isset($role_name)){echo $role_name;} ?>">
@@ -134,4 +134,38 @@ if(isset($_POST['create-role']))
         </div>
         <!-- /Main Content -->
 <?php include("../include/footer.php") ?>
+<script>
+$(document).ready(function(){
+    jQuery.validator.addMethod("String", function(value, element) {
+        // allow any non-whitespace characters as the host part
+        return this.optional( element ) || /^[a-zA-Z ]+$/.test( value );
+        }, 'Please enter valid details.');
+    $("#add-role-validation").validate({
+        rules:{
+            role_name:{
+                required:true,
+                String:true
+            },
+            status:{
+                required:true
+            }
+        },
+        messages:{
+            role_name:{
+                required:"role name is required"
+            },
+            status:{
+                required:"Status is required"
+            }
+        },
+        errorPlacement: function(error, element) {
+        if(element.attr("name") == "status") {
+            error.appendTo( element.parent("div").next("div") );
+        } else {
+            error.insertAfter(element);
+        }
+        }
+    })
+})
+</script>
 

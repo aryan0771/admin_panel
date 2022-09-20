@@ -3,39 +3,45 @@ include("../include/header.php");
 ?>
 <?php
 if(isset($_GET['edit'])){
-    $data = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM admin"));
+    $data = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM user"));
     $full_name = $data['full_name'];
     $phone = $data['phone'];
     $email = $data['email'];
     $password = $data['password'];
-    $confirm_password = $data['password'];
-    $role_id = $data['role_id'];
+    $date_of_birth = $data['date_of_birth'];
+    $confirm_password = $data['password'];   
     $status = $data['status'];
+    $country_id = $data['country_id'];
+    $state_id = $data['state_id'];
+    $city_id = $data['city_id'];
 }
 
-if(isset($_POST['create-admin']))
+if(isset($_POST['create-user']))
 {
     $full_name = $_POST['full_name'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    $role_id = $_POST['role_id'];
+    $date_of_birth = $_POST['date_of_birth'];
     $status = $_POST['status'];
+    $country_id = $_POST['country_id'];
+    $state_id = $_POST['state_id'];
+    $city_id = $_POST['city_id'];
     if(isset($_GET['edit']))
     {
         //All part for edit
-        $checkadmin = mysqli_fetch_assoc(mysqli_query($conn,"SELECT admin_id FROM admin WHERE (email='".$email."' OR phone='".$phone."') AND admin_id!=".$_GET['edit'].""));
+        $checkuser = mysqli_fetch_assoc(mysqli_query($conn,"SELECT user_id FROM user WHERE (email='".$email."' OR phone='".$phone."') AND user_id!=".$_GET['edit'].""));
         
-        if(count($checkadmin)==0){
+        if(count($checkuser)==0){
             //Check password changed or not
             if(strlen($password)=="32"){
                 //Edit query
-                $addadmin = mysqli_query($conn,"UPDATE admin SET full_name='".$full_name."',phone='".$phone."',email='".$email."',role_id='".$role_id."',status='".$status."' WHERE `admin_id`=".$_GET['edit']."");
+                $adduser = mysqli_query($conn,"UPDATE user SET full_name='".$full_name."',phone='".$phone."',email='".$email."',status='".$status."',country_id='".$country_id."',city_id='".$city_id."',state_id='".$state_id."',date_of_birth='".$date_of_birth."' WHERE `user_id`=".$_GET['edit']."");
             
             }else{
                 //Edit query
-                $addadmin = mysqli_query($conn,"UPDATE admin SET full_name='".$full_name."',phone='".$phone."',email='".$email."',password='".md5($password)."',role_id='".$role_id."',status='".$status."' WHERE `admin_id`=".$_GET['edit']."");
+                $adduser = mysqli_query($conn,"UPDATE user SET full_name='".$full_name."',phone='".$phone."',email='".$email."',password='".md5($password)."',status='".$status."',country_id='".$country_id."',city_id='".$city_id."',state_id='".$state_id."',date_of_birth='".$date_of_birth."' WHERE `user_id`=".$_GET['edit']."");
             
             }
             
@@ -43,7 +49,7 @@ if(isset($_POST['create-admin']))
             ?>
             <script>
                 $(document).ready(function(){
-                    toastr.success("Admin updated successfully");
+                    toastr.success("User updated successfully");
                 })
             </script>
             <?php
@@ -62,24 +68,27 @@ if(isset($_POST['create-admin']))
     else
     {
         //All part works for add
-        $checkadmin = mysqli_fetch_assoc(mysqli_query($conn,"SELECT admin_id FROM admin WHERE email='".$email."' OR phone='".$phone."'"));
+        $checkuser = mysqli_fetch_assoc(mysqli_query($conn,"SELECT user_id FROM user WHERE email='".$email."' OR phone='".$phone."'"));
         
-            if(count($checkadmin)==0){
+            if(count($checkuser)==0){
 
                 //add query
-                $addadmin = mysqli_query($conn,"INSERT INTO admin SET full_name='".$full_name."',phone='".$phone."',email='".$email."',password='".md5($password)."',role_id='".$role_id."',status='".$status."'");
+                $adduser = mysqli_query($conn,"INSERT INTO user SET full_name='".$full_name."',phone='".$phone."',email='".$email."',password='".md5($password)."',status='".$status."',country_id='".$country_id."',city_id='".$city_id."',state_id='".$state_id."',date_of_birth='".$date_of_birth."'");
                 
                 $full_name = "";
                 $phone = "";
                 $email = "";
                 $password = "";
                 $confirm_password = "";
-                $role_id = "";
+                $date_of_birth = "";
                 $status = "";
+                $country_id = "";
+                $state_id = "";
+                $city_id = "";
                 ?>
                 <script>
                     $(document).ready(function(){
-                        toastr.success("Admin created successfully")
+                        toastr.success("user created successfully")
                     })
                 </script>
                 <?php
@@ -88,7 +97,7 @@ if(isset($_POST['create-admin']))
                 ?>
                 <script>
                     $(document).ready(function(){
-                        toastr.error("Admin already exists")
+                        toastr.error("user already exists")
                     })
                 </script>
                 <?php
@@ -105,8 +114,8 @@ if(isset($_POST['create-admin']))
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> admin</li>
+                    <li class="breadcrumb-item"><a href="#">user</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> user</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -115,7 +124,7 @@ if(isset($_POST['create-admin']))
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"></span></span><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> Admin</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"></span></span><?php if(isset($_GET['edit'])){echo "Edit";}else{echo "Add";} ?> user</h4>
                 </div>
                 <!-- /Title -->
 
@@ -125,7 +134,7 @@ if(isset($_POST['create-admin']))
                         <section class="hk-sec-wrapper">
                             <div class="row">
                                 <div class="col-sm">
-                                    <form action="" method="post" id="add-admin-validation">
+                                    <form action="" method="post" id="add-user-validation">
                                         <div class="form-group">
                                             <label for="email">Full Name</label>
                                             <input class="form-control" name="full_name" placeholder="Enter full name" type="text" value="<?php if(isset($full_name)){echo $full_name;} ?>">
@@ -148,35 +157,41 @@ if(isset($_POST['create-admin']))
                                             <label for="email">Confirm password</label>
                                             <input class="form-control" name="confirm_password" value="<?php if(isset($confirm_password)){echo $confirm_password;} ?>" placeholder="Enter confirm password" type="password">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="date_of_birth">Birth date</label>
+                                            <input class="form-control" name="date_of_birth" value="<?php if(isset($date_of_birth)){echo $date_of_birth;} ?>" placeholder="Select date" type="date">
+                                        </div>
 
                                         <div class="row">
-                                            <div class="col-md-5">
-                                                <div class=" mb-10">
-                                                    <label for="country">Role</label>
-                                                    <select class="form-control custom-select d-block w-100" name="role_id" value="<?php if(isset($role_id)){echo $role_id;} ?>">
-                                                        <option value="0">Admin</option>
-                                                    </select>
-                                                </div>
-                                                <div>
+                                            <div class="col-md-5 mb-10">
+                                                <label for="country">Country</label>
+                                                <select class="form-control custom-select d-block w-100" name="country_id" onchange="loadstate(this.value)" id="country_dropdown">
                                                     
-                                                </div>
+                                                </select>
                                             </div>
-                                            <div class="col-md-5">
-                                                <div class="col-md-5 mb-10">
-                                                    <label for="state">Status</label>
-                                                    <select class="form-control custom-select d-block w-100" name="status" value="<?php if(isset($status)){echo $status;} ?>">                                                        
-                                                        <option value="unblock" <?php if(isset($status)){ if($status=="unblock"){ echo "selected";}} ?>>Unblock</option>
-                                                        <option value="block" <?php if(isset($status)){ if($status=="block"){ echo "selected";}} ?>>Block</option>
-                                                    </select>
-                                                </div>
-                                                <div>
-
-                                                </div>
+                                            <div class="col-md-5 mb-10">
+                                                <label for="country">State</label>
+                                                <select class="form-control custom-select d-block w-100" name="state_id" onchange="loadcity(this.value)" id="state_dropdown">
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="col-md-5 mb-10">
+                                                <label for="country">City</label>
+                                                <select class="form-control custom-select d-block w-100" name="city_id" id="city_dropdown">
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 mb-10">
+                                                <label for="state">Status</label>
+                                                <select class="form-control custom-select d-block w-100" name="status" value="<?php if(isset($status)){echo $status;} ?>">
+                                                    <option value="unblock" <?php if(isset($status)){ if($status=="unblock"){ echo "selected";}} ?>>Unblock</option>
+                                                    <option value="block" <?php if(isset($status)){ if($status=="block"){ echo "selected";}} ?>>Block</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <hr>
                                         
-                                        <button class="btn btn-primary" name="create-admin" type="submit"><?php if(isset($_GET['edit'])){echo "Save changes";}else{echo "Create";} ?></button>
+                                        <button class="btn btn-primary" name="create-user" type="submit"><?php if(isset($_GET['edit'])){echo "Save changes";}else{echo "Create";} ?></button>
                                     </form>
                                 </div>
                             </div>
@@ -193,6 +208,63 @@ if(isset($_POST['create-admin']))
         <!-- /Main Content -->
 <?php include("../include/footer.php") ?>
 
+<script>
+    function loadcountry()
+    {
+        
+        $.ajax({
+        url: "../ajax/data/country.php",
+        type: "POST",
+        async: true,
+        //data: {"id":id},
+        success: function (data) {
+            $('#country_dropdown').html(data)
+            loadstate();
+        },
+        error: function(err){
+            console.log("err: ",err);
+        }
+        });
+    }
+    function loadstate(id)
+    {
+        
+        $.ajax({
+        url: "../ajax/data/state.php",
+        type: "POST",
+        async: true,
+        data: {"id":id},
+        success: function (data) {
+            $('#state_dropdown').html(data)
+            loadcity();
+
+        },
+        error: function(err){
+            console.log("err: ",err);
+        }
+        });
+    }
+    function loadcity(id)
+    {
+        
+        $.ajax({
+        url: "../ajax/data/city.php",
+        type: "POST",
+        async: true,
+        data: {"id":id},
+        success: function (data) {
+            $('#city_dropdown').html(data)
+        },
+        error: function(err){
+            console.log("err: ",err);
+        }
+        }); 
+    }
+    loadcountry();
+    
+
+
+</script>
 <script>
     $(document).ready(function(){
         jQuery.validator.addMethod("laxEmail", function(value, element) {
@@ -212,30 +284,27 @@ if(isset($_POST['create-admin']))
             return this.optional( element ) || /^[A-Za-z0-9\d=!\-@._*]+$/.test( value );
             }, 'Please enter valid password.');
             
-        $("#add-admin-validation").validate({
+        $("#add-user-validation").validate({
             rules:{
                 full_name:{
                     required:true,
                     String:true,
                 },
-                email:{
-                    required:true,
-                    laxEmail:true
-                },
                 phone:{
                     required:true,
                     Phone:true
                 },
+                email:{
+                    required:true,
+                    laxEmail:true
+                },
                 password:{
                     required:true,
                     Validpassword:true,
-                    maxlength:16
+                    
                 },
                 confirm_password:{
                     equalTo : "#password"
-                },
-                role_id:{
-                    required:true
                 },
                 status:{
                     required:true
@@ -253,13 +322,9 @@ if(isset($_POST['create-admin']))
                 },
                 password:{
                     required:"Password is required",
-                    minlength:"Password must be less than 16 characters"
                 },
                 confirm_password:{
                     equalTo : "Password dosen't match"
-                },
-                role_id:{
-                    required:"Role is required"
                 },
                 status:{
                     required:"Status is required"
@@ -275,3 +340,4 @@ if(isset($_POST['create-admin']))
         })
     })
 </script>
+

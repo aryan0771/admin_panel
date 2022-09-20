@@ -59,6 +59,8 @@
     <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="../dist/js/dataTables-data.js"></script>
 
+    <script src="../dist/js/jquery.validate.min.js"></script>
+
 
    
 </body>

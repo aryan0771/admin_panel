@@ -78,6 +78,7 @@ if(isset($_POST['create-country']))
     
 
 ?>
+
 <!-- Main Content -->
 <div class="hk-pg-wrapper">
             <!-- Breadcrumb -->
@@ -103,17 +104,20 @@ if(isset($_POST['create-country']))
                         <section class="hk-sec-wrapper">
                             <div class="row">
                                 <div class="col-sm">
-                                    <form action="" method="post">
+                                    <form action="" method="post" id="add-country-validation">
                                         <div class="form-group">
                                             <label for="country name">Country Name</label>
                                             <input class="form-control" name="country_name" placeholder="Enter country name" type="text" value="<?php if(isset($country_name)){echo $country_name;} ?>">
                                         </div>
-                                            <div class="col-md-4 mb-10">
+                                            <div class="col-md-4 mb-10" id="status-validation">
                                                 <label for="state">Status</label>
                                                 <select class="form-control custom-select d-block w-100" name="status" value="<?php if(isset($status)){echo $status;} ?>">
                                                     <option value="enabled" <?php if(isset($status)){ if($status=="unblock"){ echo "selected";}} ?>>Enabled</option>
                                                     <option value="disabled" <?php if(isset($status)){ if($status=="block"){ echo "selected";}} ?>>Disabled</option>
                                                 </select>
+                                            </div>
+                                            <div>
+
                                             </div>
                                         
                                         <hr>
@@ -134,4 +138,39 @@ if(isset($_POST['create-country']))
         </div>
         <!-- /Main Content -->
 <?php include("../include/footer.php") ?>
+
+<script>
+    $(document).ready(function(){
+        jQuery.validator.addMethod("String", function(value, element) {
+            // allow any non-whitespace characters as the host part
+            return this.optional( element ) || /^[a-zA-Z ]+$/.test( value );
+            }, 'Please enter valid details.');
+        $("#add-country-validation").validate({
+            rules:{
+                country_name:{
+                    required:true,
+                    String:true
+                },
+                status:{
+                    required:true
+                }
+            },
+            messages:{
+                country_name:{
+                    required:"Country name is required"
+                },
+                status:{
+                    required:"Status is required"
+                }
+            },
+            errorPlacement: function(error, element) {
+            if(element.attr("name") == "status") {
+                error.appendTo( element.parent("div").next("div") );
+            } else {
+                error.insertAfter(element);
+            }
+            }
+        })
+    })
+</script>
 

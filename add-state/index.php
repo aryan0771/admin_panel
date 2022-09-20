@@ -105,7 +105,7 @@ if(isset($_POST['create-state']))
                         <section class="hk-sec-wrapper">
                             <div class="row">
                                 <div class="col-sm">
-                                    <form action="" method="post">
+                                    <form action="" method="post" id="add-state-validation">
                                         <div class="form-group">
                                             <label for="state name">State Name</label>
                                             <input class="form-control" name="state_name" placeholder="Enter state name" type="text" value="<?php if(isset($state_name)){echo $state_name;} ?>">
@@ -154,4 +154,44 @@ if(isset($_POST['create-state']))
         </div>
         <!-- /Main Content -->
 <?php include("../include/footer.php") ?>
+<script>
+$(document).ready(function(){
+    jQuery.validator.addMethod("String", function(value, element) {
+        // allow any non-whitespace characters as the host part
+        return this.optional( element ) || /^[a-zA-Z ]+$/.test( value );
+        }, 'Please enter valid details.');
+    $("#add-state-validation").validate({
+        rules:{
+            state_name:{
+                required:true,
+                String:true
+            },
+            country_id:{
+                required:true
+            },
+            status:{
+                required:true
+            }
+        },
+        messages:{
+            state_name:{
+                required:"State name is required"
+            },
+            country_id:{
+                required:"Country required"
+            },
+            status:{
+                required:"Status is required"
+            }
+        },
+        errorPlacement: function(error, element) {
+        if(element.attr("name") == "status") {
+            error.appendTo( element.parent("div").next("div") );
+        } else {
+            error.insertAfter(element);
+        }
+        }
+    })
+})
+</script>
 

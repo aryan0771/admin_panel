@@ -105,7 +105,7 @@ if(isset($_POST['create-city']))
                         <section class="hk-sec-wrapper">
                             <div class="row">
                                 <div class="col-sm">
-                                    <form action="" method="post">
+                                    <form action="" method="post" id="add-city-validation">
                                         <div class="form-group">
                                             <label for="city name">City Name</label>
                                             <input class="form-control" name="city_name" placeholder="Enter city name" type="text" value="<?php if(isset($city_name)){echo $city_name;} ?>">
@@ -154,4 +154,44 @@ if(isset($_POST['create-city']))
         </div>
         <!-- /Main Content -->
 <?php include("../include/footer.php") ?>
+<script>
+$(document).ready(function(){
+    jQuery.validator.addMethod("String", function(value, element) {
+        // allow any non-whitespace characters as the host part
+        return this.optional( element ) || /^[a-zA-Z ]+$/.test( value );
+        }, 'Please enter valid details.');
+    $("#add-city-validation").validate({
+        rules:{
+            city_name:{
+                required:true,
+                String:true
+            },
+            state_id:{
+                required:true
+            },
+            status:{
+                required:true
+            }
+        },
+        messages:{
+            city_name:{
+                required:"City name is required"
+            },
+            state_id:{
+                required:"State is required"
+            },
+            status:{
+                required:"Status is required"
+            }
+        },
+        errorPlacement: function(error, element) {
+        if(element.attr("name") == "status") {
+            error.appendTo( element.parent("div").next("div") );
+        } else {
+            error.insertAfter(element);
+        }
+        }
+    })
+})
+</script>
 
