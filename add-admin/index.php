@@ -3,7 +3,7 @@ include("../include/header.php");
 ?>
 <?php
 if(isset($_GET['edit'])){
-    $data = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM admin"));
+    $data = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM `admin` WHERE `admin_id`='".$_GET['edit']."'"));
     $full_name = $data['full_name'];
     $phone = $data['phone'];
     $email = $data['email'];
@@ -11,6 +11,7 @@ if(isset($_GET['edit'])){
     $confirm_password = $data['password'];
     $role_id = $data['role_id'];
     $status = $data['status'];
+
 }
 
 if(isset($_POST['create-admin']))
